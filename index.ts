@@ -14,7 +14,14 @@ app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
 
-// Routes
+//! Adding the 404 route
+//
+app.use((req: Request, res: Response, next: Function) => {
+  res.status(404).send("Page not found");
+  next();
+});
+
+//! Routes
 
 app.use("/admin", adminRouter);
 app.use("/shop", shopRouter);
